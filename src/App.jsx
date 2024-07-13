@@ -67,16 +67,22 @@ function App() {
     });
   }
 
+   let cntxtValue = {
+    items : shoppingCart.items,
+    onAddToCart : handleAddItemToCart,
+    onUpdateCartItemQuantity :  handleUpdateCartItemQuantity,
+   }
+
   return (
-    <CartContext.Provider value={{items:[]}}> 
+    <CartContext.Provider value={cntxtValue}> 
       <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+        // cart={shoppingCart}
+        // onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
       />
       <Shop>
       {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />  {/* component compostion avoid prop drilling*/}
+            <Product {...product} />  {/* component compostion avoid prop drilling*/}
           </li>
         ))}
       </Shop>
